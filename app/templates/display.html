@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}SafeGuard - 展示所有用户{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='reset.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bg.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='allusers.css') }}">
+{% endblock styles %}
+
+{% block pagecontent %}
+
+    <div class="allusers">
+        <h1>展示用户信息，谢谢大家</h1>
+        {% for user in userlist %}
+            <div class="user">
+                <h3>用户名：{{ user.username }}</h3>
+                <h3>绑定的设备号：{{ user.device_id }}</h3>
+                <h3>激活时间：{{ user.activation_time }}</h3>
+
+                <h4>年龄：{{ user.age }}</h4>
+                <h4>性别：{{ user.sex }}</h4>
+                <h4>状态:{{ user.status }}</h4>
+                <h5>位置:{{ user.location }}</h5>
+            <h5>定位方式：{{ user.locate_type }}</h5>
+                <h4>上次同步时间：{{ user.last_sync }}</h4>
+                <h4>电话：{{ user.telephone }}</h4>
+
+                体温：{% if user.body_tempterature %}
+                    {{user.body_tempterature }}℃
+                        {% else %}无数据
+                    {% endif %}&nbsp&nbsp&nbsp
+                心率：{% if user.heart_rate %}
+                    {{user.heart_rate }}/min
+                        {% else %}无数据
+                    {% endif %}
+            &nbsp&nbsp
+                血氧：{% if user.blood_oxygen %}
+                    {{user.blood_oxygen }}%
+                        {% else %}无数据
+                    {% endif %}
+                <br>
+
+                精度：{% if user.latitude %}
+                    {{user.latitude }}%
+                        {% else %}无数据
+                    {% endif %}&nbsp&nbsp
+
+                纬度: {% if user.longitude %}
+                    {{user.longitude }}
+                        {% else %}无数据
+                    {% endif %}
+
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
