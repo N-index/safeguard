@@ -42,7 +42,6 @@ def users():
         print(user.last_sync)
         print(user.heart_rate)
         print(user.email)
-    # print(userlist[0].username)
     return render_template('display.html', userlist=userlist)
 
 
@@ -82,16 +81,17 @@ def upload_user_data():
     return 'sync success'
 
 
+# Distributing user basic info to device according the device ID.
 @main.route('/get_user_data/<string:device_id>')
 def get_user_data(device_id):
     user = User.query.filter_by(device_id=device_id).first()
     if user is None:
-        response = make_response('error'
-                                 )
+        response = make_response('error')
         response.status_code = 404
         response.headers['Content-type'] = 'text/plain'
         response.headers['Charset'] = 'UTF-8'
         return response
+    print(user.username)
     response = make_response(user.username + ','
                              + str(user.age) + ','
                              + str(user.sex) + ','

@@ -14,8 +14,9 @@
 
 
     {% for message in get_flashed_messages() %}
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div class="message" style="width: 80%;padding: 20px;background-color: whitesmoke;color: #4A2756">
                 {{ message }}
+        </div>
     {% endfor %}
 
     {% block pagecontent %}
