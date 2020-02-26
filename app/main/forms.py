@@ -13,7 +13,7 @@ class RegisterForm(FlaskForm):
     gender = RadioField('Gender? *',
                         choices=[('0', 'male'), ('1', 'female')],
                         validators=[DataRequired()],
-                        render_kw={'class': 'radiobutton'})
+                        )
     height = IntegerField('Height? (cm) *', validators=[DataRequired(), NumberRange(2, 300, 'Too short or too high.')])
     weight = FloatField('Weight? (kg) *', validators=[DataRequired(),
                                                       NumberRange(1, 600, 'Too light or too heavy. Go to the doctor.')])
