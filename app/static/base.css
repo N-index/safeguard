@@ -1,0 +1,22 @@
+.message{
+    width: 100%;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: rgba(200,200,200,0.3);
+    font-size:22px;
+    color: snow;
+    text-align: center;
+    margin-bottom: 20px;
+    border-width: 8px;
+    border-style: double;
+}
+.left{
+    /*background-color: rgba(200,200,200,0.99);*/
+    /*color: snow;*/
+    width: 350px;
+    border-width: 8px;
+    border-style: double;
+    border-radius: 20px;
+    padding: 25px;
+
+}

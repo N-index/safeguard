@@ -9,6 +9,7 @@ from ..models import User
 
 @main.route('/', methods=['GET', 'POST'])
 def register():
+    flash('激活以后就可以顺利使用了！')
     registerForm = RegisterForm()
     if registerForm.validate_on_submit():
         user = User(device_id=registerForm.device_id.data,

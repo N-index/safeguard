@@ -7,22 +7,22 @@
     {{ super() }}
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static',filename='base.css') }}">
 {% endblock styles %}
 
 
 {% block content %}
 
 
-    {% for message in get_flashed_messages() %}
-        <div class="message" style="width: 80%;padding: 20px;background-color: whitesmoke;color: #4A2756">
-                {{ message }}
-        </div>
-    {% endfor %}
+
 
     {% block pagecontent %}
         <div class="bottom">
             <div class="left">
+
                 {{ wtf.quick_form(registerForm) }}
+                {{ registerForm.gender.label() }}
+
             </div>
 
             <div class="game">
@@ -65,8 +65,19 @@
                 <input class="toggle-input" id="daylight" type="checkbox">
                 <label class="toggle-btn" for="daylight"></label>
             </div>
+
+
+             {% for message in get_flashed_messages() %}
+                <div class="message">
+                        {{ message }}
+                </div>
+            {% endfor %}
+
+
         </div>
+
         </div>
+
     {% endblock %}
 
 {% endblock %}
