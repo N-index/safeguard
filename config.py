@@ -19,7 +19,7 @@ class Config:
 # 继承Config
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@localhost:3306/safeGuard?charset=UTF8MB4'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1:3306/safeGuard?charset=UTF8MB4'
 
 
 config = {
