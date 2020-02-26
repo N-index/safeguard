@@ -21,8 +21,7 @@ class DevelopmentConfig(Config):
     DEBUG = False
 
     # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1:3306/safeGuard?charset=UTF8MB4'
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Jjh116023@http://rm-bp1m0v39119u248032o.mysql.rds.aliyuncs.com:3306' \
-                              '/safeGuard?charset=UTF8MB4'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Jjh116023@http://rm-bp1m0v39119u248032o.mysql.rds.aliyuncs.com:3306/safeGuard?charset=UTF8MB4'
 
 
 config = {
