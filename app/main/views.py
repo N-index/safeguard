@@ -57,6 +57,7 @@ def upload_user_data():
         response.headers['Content-Type'] = 'text/plain'
         return response
 
+    print(params)
     # status = params[0]
     # body_temperature = params[1]
     # heart_rate = params[2]
@@ -72,6 +73,10 @@ def upload_user_data():
     user.longitude = params[5]
     user.locate_type = params[-2]
     user.last_sync = datetime.utcnow()
+    print(user.status)
+    print(user.body_temperature)
+    print(user.heart_rate)
+    print()
 
     db.session.add(user)
     try:
