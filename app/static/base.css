@@ -1,3 +1,38 @@
+*{
+padding: 0;
+    margin: 0;
+
+}
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #F90;
+  border-radius: 10px;
+  /*background: linear-gradient(left, #fff, #e4e4e4);*/
+    background-image: linear-gradient(45deg,rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);;
+  border: 1px solid #aaa;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(left, #22ADD4, #1E98BA);
+}
+body {
+  display: flex;
+  flex-direction: column;
+    justify-content: flex-start;
+background-image: url("boy.jpg");
+    /*align-items: center;*/
+}
+
 .message{
     width: 100%;
     padding: 15px;
@@ -10,12 +45,51 @@
     border-width: 8px;
     border-style: double;
 }
-.left{
 
-    width: 350px;
-    border-width: 8px;
-    border-style: double;
-    border-radius: 20px;
-    padding: 25px;
-
+.header{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 3;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    /*margin: 0 auto;*/
+    padding-right: 25%;
+    border-bottom: 5px solid rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    overflow: hidden;
+    user-select: none;
+    background-color: rgba(255,255,255,0.95);
 }
+ .nav-right{
+    margin: auto 20px;
+     font-weight: normal;
+     text-decoration-style: double;
+     text-decoration-line: blink;
+     color: darkcyan;
+     transition-duration: 0.5s;
+}
+ .nav-right:hover{
+     color:#2c3e50;
+     /*font-weight: bolder;*/
+
+ }
+.nav-left{
+    margin-right: 60%;
+}
+.nav-left img{
+    width: 45px;
+    height: 45px;
+}
+
+.nav-left:hover{
+    opacity: 0.5;
+}
+
+/*#particles-js {*/
+/*  position: fixed;*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  background: #00356B;*/
+/*}*/

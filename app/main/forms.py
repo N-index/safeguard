@@ -21,7 +21,7 @@ class RegisterForm(FlaskForm):
                             validators=[DataRequired(), Length(0, 15, 'Too short or too long.'),
                                         Regexp('^[0-9][0-9]*$', 0, 'Invalid phone number.')])
     email = StringField('Email? * ', validators=[DataRequired(), Email()])
-    submit = SubmitField('Activate device and Register user', render_kw={'class': 'btn btn-block'})
+    submit = SubmitField('Activate device and Register user', render_kw={})
 
     def validate_device_id(self, field):
         if User.query.filter_by(device_id=field.data).first():
@@ -34,3 +34,7 @@ class RegisterForm(FlaskForm):
     # def validate_weight(self, field):
     #     if int(field.data) < 1 or int(field.data) > 600:
     #         raise ValidationError('The weight is abnormal.')
+
+
+class SearchForm(FlaskForm):
+    username = StringField('', validators=[DataRequired()], render_kw={'placeholder': 'Search by name'})

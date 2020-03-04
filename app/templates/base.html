@@ -1,10 +1,7 @@
-{% extends "bootstrap/base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% block title %}SafeGuard Base{% endblock %}
-
+{% from 'bootstrap/utils.html' import render_messages %}
 
 {% block styles %}
-    {{ super() }}
+    {{ bootstrap.load_css() }}
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static',filename='base.css') }}">
@@ -13,76 +10,33 @@
 
 {% block content %}
 
+{% block nav %}
 
+<div class="header">
+    <a class="nav-left" href="{{ url_for('main.register') }}">
+        <img src="{{ url_for('static',filename='favicon.ico') }}" alt="SAFE GUARD">
+    </a>
+    <a class="nav-right" href="{{ url_for('main.users') }}">用户列表</a>
+    <a class="nav-right" href="{{ url_for('main.register') }}">注册</a>
+</div>
+
+{% endblock %}
 
 
     {% block pagecontent %}
-        <div class="bottom">
-            <div class="left">
-
-                {{ wtf.quick_form(registerForm) }}
-{#                {{ registerForm.gender.label() }}#}
-
-            </div>
-
-            <div class="game">
-            <div class="globe">
-        <div class="stars"></div>
-        <div class="moon"></div>
-        <div class="trees"></div>
-        <div class="xmas-tree"></div>
-        <div class="house">
-          <div class="roof">
-            <div class="chimney-shadow"></div>
-            <div class="chimney"></div>
-            <svg class="chimney-smoke" width="167px" height="120px" viewBox="0 0 167 126">
-              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <path class="smoke-line" d="M96,120.01193 C94.4048061,108.450138 93.7381394,100.988465 94,97.6269104 C94.8108865,87.2174052 96.6547999,82.442437 101,78.9355263 C110.8992,70.94611 126.181323,67.2687495 133,64.5154233 C137.666667,62.6310613 145.666667,60.6460727 157,58.5604574" id="Line-4" stroke-width="3" opacity="0.75" stroke-linecap="round"></path>
-                <path d="M1.42108547e-14,14.1447128 C17.1627454,6.49685414 37.2619924,2.08774841 60.297741,0.917395624 C77.9320787,0.0214665788 113.248394,5.18264048 138.904897,18.967008 C148.229239,23.9766608 168.581183,35.9228973 166.132155,45.1887753 C164.825348,50.1330701 145.23725,55.4862994 128.57129,61.0442654 C114.004332,65.9022305 102.247031,71.1230124 99.3007971,73.6534064 C79.8998593,90.3160401 94.7724059,124.748188 89.216279,121.824982 C85.4617402,119.849633 82.4619414,121.398876 82.4619414,117.824982 C82.4619414,111.909255 82.9875175,100.106822 79.8340206,95.8249817 C76.085218,90.7348319 68.2196812,86.0681652 56.2374101,81.8249817 C46.8978441,76.9706385 42.0070863,73.3039718 41.5651367,70.8249817 C40.0296411,62.2120569 48.0544005,54.94236 51.9230406,53.1289686 C67.329716,45.9072238 98.1922276,39.8673063 99.3007971,30.3815627 C101.00718,15.7804836 67.9069143,10.3682003 1.42108547e-14,14.1447128 Z" id="Rectangle" opacity="0.749581473"></path>
-              </g>
-            </svg>
-          </div>
-          <div class="house-front house-front-left">
-            <div class="window"></div>
-            <div class="door"></div>
-            <div class="house-front-shadow"></div>
-            <div class="house-front-lights"></div>
-          </div>
-          <div class="house-front house-front-right">
-            <div class="door door-right"></div>
-            <div class="house-front-shadow"></div>
-            <div class="house-front-lights"></div>
-          </div>
-          <div class="roof-right"></div>
-        </div>
-        <div class="snow-front"></div>
-        <div class="snowman">
-          <div class="snowman-shadow"></div>
-        </div>
-      </div>
-
-            <div class="base">
-                <input class="toggle-input" id="daylight" type="checkbox">
-                <label class="toggle-btn" for="daylight"></label>
-            </div>
-
-
-             {% for message in get_flashed_messages() %}
-                <div class="message">
-                        {{ message }}
-                </div>
-            {% endfor %}
-
-
-        </div>
-
-        </div>
+<div style="width: 15%;border-radius: 10px;">
+{{ render_messages() }}
+</div>
+        {% block mycontent %}
+        {% endblock %}
 
     {% endblock %}
 
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
- <script  src="{{ url_for('static',filename='script.js') }}"></script>
+{#{{ super() }}#}
+{#      <script src='https://cldup.com/S6Ptkwu_qA.js'></script>#}
+    <script  src="{{ url_for('static',filename='script.js') }}"></script>
+
 {% endblock %}
