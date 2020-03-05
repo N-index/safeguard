@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatField
+from wtforms import StringField, SubmitField, RadioField, IntegerField, FloatField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, ValidationError, Email, NumberRange, Regexp, Length
 
 from app.models import User
@@ -21,6 +21,7 @@ class RegisterForm(FlaskForm):
                             validators=[DataRequired(), Length(0, 15, 'Too short or too long.'),
                                         Regexp('^[0-9][0-9]*$', 0, 'Invalid phone number.')])
     email = StringField('Email? * ', validators=[DataRequired(), Email()])
+    password = PasswordField('Please set password', validators=[DataRequired()])
     submit = SubmitField('Activate device and Register user', render_kw={})
 
     def validate_device_id(self, field):
@@ -38,3 +39,10 @@ class RegisterForm(FlaskForm):
 
 class SearchForm(FlaskForm):
     username = StringField('', validators=[DataRequired()], render_kw={'placeholder': 'Search by name'})
+
+
+class LoginForm(FlaskForm):
+    device_id = StringField('Please input your device ID.', validators=[DataRequired()])
+    password = PasswordField('Please input your password.', validators=[DataRequired()])
+    remember_me = BooleanField('Remember me in 7days.)')
+    login = SubmitField('Login')

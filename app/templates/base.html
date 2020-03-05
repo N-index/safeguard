@@ -13,18 +13,31 @@
 {% block nav %}
 
 <div class="header">
-    <a class="nav-left" href="{{ url_for('main.register') }}">
+    <a class="nav-left" href="{{ url_for('main.index') }}">
         <img src="{{ url_for('static',filename='favicon.ico') }}" alt="SAFE GUARD">
     </a>
-    <a class="nav-right" href="{{ url_for('main.users') }}">用户列表</a>
-    <a class="nav-right" href="{{ url_for('main.register') }}">注册</a>
+    {% if current_user.is_authenticated and current_user.is_admin %}
+        <a class="nav-right" href="{{ url_for('main.users') }}">用户列表</a>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+        <span class="nav-right">
+            <a href="{{ url_for('main.profile',device_id=current_user.device_id) }}">
+                {{ current_user.username }}
+            </a>
+        </span>
+        <a class="nav-right" href="{{ url_for('main.logout') }}">注销</a>
+        {% else %}
+          <a class="nav-right" href="{{ url_for('main.register') }}">注册</a>
+        <a class="nav-right" href="{{ url_for('main.login') }}">登录</a>
+    {% endif %}
+
 </div>
 
 {% endblock %}
 
 
     {% block pagecontent %}
-<div style="width: 15%;border-radius: 10px;">
+<div style="font-size:22px;z-index: 4;right:40px;top:100px;position:fixed;width: 150px;">
 {{ render_messages() }}
 </div>
         {% block mycontent %}

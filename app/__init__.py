@@ -3,6 +3,11 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 from flask_moment import Moment
+from flask_login import LoginManager
+
+login_manager = LoginManager()
+# 用户尝试访问受到保护的页面的时候，重定向到登录页面。
+login_manager.login_view = 'main.login'
 
 bootstrap = Bootstrap()
 # 初始化db
@@ -20,6 +25,7 @@ def create_app(config_name):
     bootstrap.init_app(app)
     db.init_app(app)
     moment.init_app(app)
+    login_manager.init_app(app)
 
     # 添加路由和自定义的错误页面
     from .main import main as main_blueprint

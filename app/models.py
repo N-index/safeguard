@@ -5,9 +5,31 @@ from random import random
 from random import choices
 from random import shuffle
 from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, AnonymousUserMixin
+from . import login_manager
 
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+class AnonymousUser(AnonymousUserMixin):
+
+    def can(self, permissions):
+        return False
+
+    def is_administrator(self):
+        return False
+
+    admin_flag = False
+
+
+login_manager.anonymous_user = AnonymousUser
+
+
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     device_id = db.Column(db.Integer, nullable=False, unique=True)
@@ -37,11 +59,29 @@ class User(db.Model):
     # 经度
     longitude = db.Column(db.String(30))
 
+    password_hash = db.Column(db.String(128))
+    admin_flag = db.Column(db.Boolean, default=False)
+
+    @property
+    def password(self):
+        raise AttributeError('Password is not a readable attribute.')
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    @property
+    def is_admin(self):
+        return self.admin_flag
+
     def __repr__(self):
         return '<User %r>' % self.username
 
     def grow1(self):
-        self.age=self.age+1
+        self.age = self.age + 1
         db.session.add(self)
         db.session.commit()
 
@@ -63,12 +103,19 @@ class User(db.Model):
                         last_sync=faker.past_datetime('-365d')
                         )
             db.session.add(
-               user
+                user
             )
             try:
                 db.session.commit()
             except:
                 db.session.rollback()
+
+    @staticmethod
+    def update_allusers_data():
+        userlist = User.query.all()
+        for user in userlist:
+            user.sync_user_data()
+        return '更新完毕'
 
     def sync_user_data(self):
         self.locate_type = randint(0, 1)
@@ -85,6 +132,8 @@ class User(db.Model):
         local_latlng = faker.local_latlng('CN', False)
         self.latitude = local_latlng[0]
         self.longitude = local_latlng[1]
+        db.session.add(self)
+        db.session.commit()
 
 
 # def test_age():
