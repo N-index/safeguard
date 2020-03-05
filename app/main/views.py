@@ -139,3 +139,12 @@ def get_id():
     return jsonify({
         'device_id': res
     })
+
+
+@main.route('/profile/<device_id>')
+def profile(device_id):
+    print(device_id)
+    user = User.query.filter_by(device_id=device_id).first()
+    if user is None:
+        return render_template('404.html',message='用户不存在。')
+    return render_template('profile.html', userlist=[user])

@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h2>客制版404.页面丢失..!</h2>
+{% block nav %}
+{{ super() }}
+{% endblock %}
+
+{% block mycontent %}
+<h2 style="background-color: #1b6d85;color: whitesmoke;padding: 15px;text-align: center">客制版404.{% if message %}{{message}}{% endif %}</h2>
 {% endblock %}
