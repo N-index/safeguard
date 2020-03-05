@@ -34,8 +34,8 @@ def register():
     return render_template('register.html', registerForm=registerForm)
 
 
-@login_required
 @main.route('/users/', methods=['GET', 'POST'])
+@login_required
 def users():
     if not current_user.admin_flag:
         return abort(403)
@@ -48,8 +48,8 @@ def users():
     return render_template('display.html', userlist=userlist, searchForm=searchForm)
 
 
-@login_required
 @main.route('/user/<username>/', methods=['GET', 'POST'])
+@login_required
 def user(username):
     if not current_user.admin_flag:
         return abort(403)
@@ -145,16 +145,14 @@ def get_user_data(device_id):
 #     })
 
 
-@login_required
 @main.route('/profile/<int:device_id>')
+@login_required
 def profile(device_id):
     user = User.query.filter_by(device_id=device_id).first()
     if user is None:
         return render_template('404.html', message='页面丢失。')
-    print(not current_user.admin_flag and current_user.device_id != int(device_id))
     if not current_user.admin_flag and current_user.device_id != device_id:
         abort(403)
-
     return render_template('profile.html', userlist=[user], zoom=14,
                            username=user.username, type=user.locate_type,
                            longitude=user.longitude, latitude=user.latitude)
