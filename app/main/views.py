@@ -5,9 +5,11 @@ from flask import flash, render_template, redirect, url_for, request, make_respo
 from .. import db
 from ..models import User
 from flask_login import login_required, login_user, logout_user, current_user
+from .decorators import anonymous_required
 
 
 @main.route('/', methods=['GET', 'POST'])
+@anonymous_required()
 def register():
     registerForm = RegisterForm()
     if registerForm.validate_on_submit():
@@ -159,6 +161,7 @@ def profile(device_id):
 
 
 @main.route('/login', methods=['GET', 'POST'])
+@anonymous_required()
 def login():
     loginForm = LoginForm()
     if loginForm.validate_on_submit():

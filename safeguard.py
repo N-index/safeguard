@@ -4,7 +4,7 @@ from flask_migrate import Migrate, upgrade
 from app.models import User
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-# bind db&app
+# bind db & app
 migrate = Migrate(app, db)
 
 
