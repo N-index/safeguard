@@ -55,11 +55,14 @@ def users():
 def user(username):
     if not current_user.admin_flag:
         return abort(403)
+
     verify_user_device_id = User.query.filter_by(username=username.strip()).first()
     if verify_user_device_id is None:
-        return abort(404)
+        flash('查无此人')
+        return redirect(url_for('main.users'))
     if not current_user.admin_flag and current_user.device_id != verify_user_device_id.device_id:
         return abort(403)
+
     searchForm = SearchForm()
     if searchForm.validate_on_submit():
         searched_user = User.query.filter_by(username=searchForm.username.data.strip()).first()
@@ -75,11 +78,11 @@ def user(username):
     return render_template('display.html', userlist=[searched_user], searchForm=searchForm)
 
 
-@main.route('/test/', methods=['POST'])
-def test():
-    params = request.data.decode('utf-8').split(',')
-    print(params)
-    return 'success'
+# @main.route('/test/', methods=['POST'])
+# def test():
+#     params = request.data.decode('utf-8').split(',')
+#     print(params)
+#     return 'success'
 
 
 @main.route('/upload/', methods=['POST'])
@@ -171,6 +174,7 @@ def login():
             nxt = request.args.get('next')
             if nxt is None or not nxt.startswith('/'):
                 nxt = url_for('main.index')
+            flash('登录成功')
             return redirect(nxt)
         flash('设备或密码错误。')
         return redirect(url_for('main.login'))

@@ -37,10 +37,19 @@
 
 
     {% block pagecontent %}
-<div style="font-size:22px;z-index: 4;right:40px;top:100px;position:fixed;width: 150px;">
-{{ render_messages() }}
-</div>
+
+        {% for message in get_flashed_messages() %}
+            <div class="flashed_messages">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+
+{#        <div class="message" style="font-size:22px;z-index: 4;right:40px;bottom:100px;position:fixed;width: 300px;">#}
+{#            {{ render_messages() }}#}
+{#        </div>#}
+
         {% block mycontent %}
+
         {% endblock %}
 
     {% endblock %}

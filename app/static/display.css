@@ -36,9 +36,15 @@
     border-style: double;
     border-color:#00356B;
     border-radius: 18px 18px 0 0 ;
-    transition-duration: 0.3s;
     font-family: "Droid Sans Mono", serif;
+    transition: all .2s ;
 }
+.user:hover{
+    transform: translateY(-25px) scale(1.1);
+    box-shadow: 15px 15px 20px #2c3e50;
+}
+
+
 .user-head{
     display: flex;
     justify-content: space-between;
