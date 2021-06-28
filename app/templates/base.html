@@ -30,11 +30,25 @@
           <a class="nav-right" href="{{ url_for('main.register') }}">注册</a>
         <a class="nav-right" href="{{ url_for('main.login') }}">登录</a>
     {% endif %}
-
 </div>
-
 {% endblock %}
 
+
+{% block content %}
+    <div class="mycontainer">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="page_content">
+            {% block page_content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+ 
 
     {% block pagecontent %}
 
@@ -43,10 +57,6 @@
                 <p>{{ message }}</p>
             </div>
         {% endfor %}
-
-{#        <div class="message" style="font-size:22px;z-index: 4;right:40px;bottom:100px;position:fixed;width: 300px;">#}
-{#            {{ render_messages() }}#}
-{#        </div>#}
 
         {% block mycontent %}
 
@@ -57,7 +67,7 @@
 {% endblock %}
 
 {% block scripts %}
-
-    <script  src="{{ url_for('static',filename='script.js') }}"></script>
+<!-- 夜间模式 -->
+    <!-- <script  src="{{ url_for('static',filename='script.js') }}"></script> -->
 
 {% endblock %}

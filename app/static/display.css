@@ -52,8 +52,13 @@
     /*align-content: center;*/
     padding: 3px 8px;
     border-radius: 8px 8px 0 0 ;
-    background-color: rgb(49,170,165);
     color:white;
+}
+.user-head-safe{
+        background-color: rgb(49,170,165);
+}
+.user-head-danger{
+    background-color: rgb(170, 50, 51);
 }
 .gender-age{
     font-size: 14px;

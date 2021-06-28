@@ -13,16 +13,14 @@
 
     <div class="search">
        {{ render_form(searchForm) }}
-
     </div>
 
     <div class="allusers">
 
-
         {% for user in userlist %}
             <div class="user">
 
-            <div class="user-head">
+            <div class="{% if user.status==0 %}user-head user-head-safe {% else %}user-head user-head-danger {% endif %}">
             <span>
                 <span class="name">{{ user.username }}
                     <span class="tip profile-link">
