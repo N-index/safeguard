@@ -1,10 +1,8 @@
 # Safe Guard 健康卫士
 
----------
-
 ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/metabolize/rq-dashboard-on-heroku/flask?style=plastic)
 
-**Summary:**   
+## Summary
 1. 跟踪监测用户的体温、心率、血氧。
 2. 意外伤害，及时警报。
 3. 可视化用户的当前位置。
