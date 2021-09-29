@@ -23,7 +23,7 @@ Generate some fake users with Faker package.
 ## Showcase:
 1. Users ![Users](test/Users.jpg)
 
-2. Single user ![Users](test/SingleUser.jpg)
+2. Single user ![Single user](test/SingleUser.jpg)
 
 ## License
 MIT
